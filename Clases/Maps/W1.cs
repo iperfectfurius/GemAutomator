@@ -8,7 +8,6 @@ namespace GemAutomator.Clases.Maps
 {
 	class W1 : Map
 	{
-		
 		public W1()
 		{
 			Name = "W1";

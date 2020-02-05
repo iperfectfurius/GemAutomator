@@ -28,11 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.timer2 = new System.Windows.Forms.Timer(this.components);
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -77,12 +80,23 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(70, 96);
+			this.button1.Location = new System.Drawing.Point(65, 96);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
 			this.button1.TabIndex = 3;
 			this.button1.Text = "Parar";
 			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// timer1
+			// 
+			this.timer1.Interval = 1000;
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			// 
+			// timer2
+			// 
+			this.timer2.Enabled = true;
+			this.timer2.Interval = 500;
+			this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
 			// 
 			// Form2
 			// 
@@ -109,7 +123,9 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button1;
+		public System.Windows.Forms.Label label3;
+		public System.Windows.Forms.Timer timer1;
+		public System.Windows.Forms.Timer timer2;
 	}
 }

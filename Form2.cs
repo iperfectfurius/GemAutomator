@@ -13,6 +13,8 @@ namespace GemAutomator
 {
 	public partial class Form2 : Form
 	{
+		private int time;
+		private List<string> options = new List<string>();
 		public Form2()
 		{
 			InitializeComponent();
@@ -24,8 +26,39 @@ namespace GemAutomator
 		}
 		internal void obtainData(Form1 f1,Map m)
 		{
-			Console.WriteLine(f1);
-			Console.WriteLine(m.Name);
+			options = f1.getData();
+			printData();
+			label3.Text += m.Name;
+			time = m.Timer;
+		}
+		private void printData()
+		{
+			foreach(string s in options)
+			{
+				label2.Text += s;
+			}
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			timer2.Enabled = false;
+			if (time > 0)
+				time--;
+			else
+				timer1.Enabled = false;
+			label1.Text = time.ToString();
+		}
+
+		private void timer2_Tick(object sender, EventArgs e)
+		{
+			if (label1.Text.Contains("..."))
+			{
+				label1.Text = "Cargando";
+			}
+			else
+			{
+				label1.Text += '.';
+			}
 		}
 	}
 }

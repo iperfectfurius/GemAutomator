@@ -46,11 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Gem.cs" />
+    <Compile Include="Clases\Instrucciones.cs" />
     <Compile Include="Clases\Map.cs" />
     <Compile Include="Clases\Maps\W1.cs" />
     <Compile Include="Clases\Maps\W2.cs" />
     <Compile Include="Clases\Tablero.cs" />
     <Compile Include="Clases\Tower.cs" />
+    <Compile Include="Clases\Towers\Trap.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,9 +97,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Clases\map when finished.png" />
-    <Content Include="Clases\Menu.png" />
-    <Content Include="Clases\w1.png" />
+    <Content Include="Clases\imgs\map when finished.png" />
+    <Content Include="Clases\imgs\Menu.png" />
+    <Content Include="Clases\imgs\w1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

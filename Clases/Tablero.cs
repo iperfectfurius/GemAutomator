@@ -19,14 +19,23 @@ namespace GemAutomator.Clases
 		private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
 		private const int MOUSEEVENTF_RIGHTUP = 0x10;
 		private Map map = new Map();
+		private Instrucciones ins;
 
 		private int[] startBattle = { 1481, 884 };
 		private string espacio = " ";
 		private int velocidad = 81;
 		private string backspace = "{BS}";
+		private int[,] gemTable = new int[,]
+		//------1-------------2-------------3-------
+		{ { 1768, 490 },{ 1825, 597 }, {1884, 602 },
+		//------4----------5------------6-----------
+		{ 1772,538 },{ 1825,538 },{ 1884,538 },
+		//----7------------8------------9------------
+		{ 1772,490 },{ 1825,490 },{ 1884,490 } };
 
 		public string Espacio { get => espacio;}
 		public int Velocidad { get => velocidad;}
+		public int[,] GemTable { get => gemTable;}
 
 		public void comenzarJuego(Timer load, Timer gameTime,int loadTime,int secs)
 		{
@@ -37,16 +46,19 @@ namespace GemAutomator.Clases
 			gameTime.Interval = secs * 1000;
 			load.Enabled = true;	
 			
+			
 		}
 		public void juegoIniciado(Map m)
 		{
 			map = m;
 			ejecutarInstrucciones();
+			ins = new Instrucciones();
 		}
 
 		private void ejecutarInstrucciones()
-			
 		{
+
+			Form1.ejecutar("q");
 			Form1.ejecutar("q");
 		}
 

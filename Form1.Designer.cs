@@ -107,9 +107,9 @@
 			this.checkBox1.AutoSize = true;
 			this.checkBox1.Location = new System.Drawing.Point(6, 19);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(100, 17);
+			this.checkBox1.Size = new System.Drawing.Size(88, 17);
 			this.checkBox1.TabIndex = 5;
-			this.checkBox1.Text = "AuTo FaRmInG";
+			this.checkBox1.Text = "Auto Farming";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
 			// groupBox1
