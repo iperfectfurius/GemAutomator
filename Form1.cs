@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -50,9 +51,8 @@ namespace GemAutomator
 		{
 			//this.TopMost = true;
 			//this.WindowState = FormWindowState.Minimized;
-			f2.Show();
-			f2.obtainData(this,map_selected);		
-			tablero.comenzarJuego(timer2,timer1, map_selected.LoadTime,map_selected.Timer);
+			iniciar();
+			
 		}
 		
 
@@ -66,19 +66,39 @@ namespace GemAutomator
 		}
 
 		//----------------------Juego-------------------------//
+		public void iniciar()
+		{
+			f2.Show();
+			
+			f2.TopMost = true;
+			f2.obtainData(this, map_selected);
+			tablero.comenzarJuego(timer2, timer1, map_selected.LoadTime, map_selected.Timer);
+		}
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			timer1.Enabled = false;
+			Console.WriteLine("juego finalizado");
+			timer1.Stop();
 			tablero.finalizarJuego();
 			finalizar();
+			if (checkBox1.Checked)
+			{
+				Thread.Sleep(9000);
+				//Task.Delay(8000).ContinueWith(t => f2.obtainData(this, map_selected));
+				tablero.seleccionarMapa();
+				Thread.Sleep(1000);
+				tablero.comenzarJuego(timer2, timer1, map_selected.LoadTime, map_selected.Timer);
+				/*Task.Delay(8000).ContinueWith(t => tablero.seleccionarMapa());
+				Task.Delay(9000).ContinueWith(t => tablero.comenzarJuego(timer2, timer1, map_selected.LoadTime, map_selected.Timer));*/
+			}
 		}
 
 		private void timer2_Tick(object sender, EventArgs e)
 		{
-			timer1.Enabled = true;
-			timer2.Enabled = false;
+			timer1.Start();
+			timer2.Stop();
 			tablero.juegoIniciado(map_selected);
-			f2.timer1.Enabled = true;
+			f2.timer1.Start();
+			//Console.WriteLine("segundo timer t2");
 			//this.WindowState = FormWindowState.Normal;
 			
 

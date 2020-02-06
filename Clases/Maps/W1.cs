@@ -17,9 +17,11 @@ namespace GemAutomator.Clases.Maps
 			Towers.Add(new Tower());
 			Towers.Add(new Tower());
 			Towers.Add(new Tower());
+			//Towers.Add(new Trap());
 			Timer = 40;//40
 			Finished = true;
 			LoadTime = 11;
+			Map_location = new int[]{960,540};		
 		}
 	}
 }

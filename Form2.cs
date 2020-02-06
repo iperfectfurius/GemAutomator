@@ -45,7 +45,9 @@ namespace GemAutomator
 			if (time > 0)
 				time--;
 			else
+			{
 				timer1.Enabled = false;
+			}
 			label1.Text = time.ToString();
 		}
 

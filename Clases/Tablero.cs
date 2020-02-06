@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace GemAutomator.Clases
 {
@@ -37,22 +39,24 @@ namespace GemAutomator.Clases
 		public int Velocidad { get => velocidad;}
 		public int[,] GemTable { get => gemTable;}
 
-		public void comenzarJuego(Timer load, Timer gameTime,int loadTime,int secs)
+		public void comenzarJuego(System.Windows.Forms.Timer load, System.Windows.Forms.Timer gameTime,int loadTime,int secs)
 		{
 			Cursor.Position = new Point(startBattle[0], startBattle[1]); //Set cursor to location 100, 150
+			Thread.Sleep(20);
 			mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
 			//Cursor.Clip = new Rectangle(this.Location, this.Size);
 			load.Interval = loadTime * 1000;
 			gameTime.Interval = secs * 1000;
-			load.Enabled = true;	
-			
+			load.Start();
+			Console.WriteLine("juego comenzado");
 			
 		}
 		public void juegoIniciado(Map m)
 		{
+			Console.WriteLine("juego iniciado");
 			map = m;
 			ejecutarInstrucciones();
-			ins = new Instrucciones();
+			//ins = new Instrucciones();
 		}
 
 		private void ejecutarInstrucciones()
@@ -60,11 +64,21 @@ namespace GemAutomator.Clases
 
 			Form1.ejecutar("q");
 			Form1.ejecutar("q");
+			Console.WriteLine("partida empezada velocidad");
 		}
 
 		public void finalizarJuego()
 		{
 			Form1.ejecutar(backspace);
+		}
+		public void seleccionarMapa()
+		{
+
+			Cursor.Position = new Point(map.Map_location[0], map.Map_location[1]);
+			mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+
+
+			
 		}
 	}
 }
