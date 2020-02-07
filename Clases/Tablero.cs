@@ -6,8 +6,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading.Tasks;
-using System.Threading;
 using GemAutomator.Clases.Gems;
 using WindowsInput.Native;
 using WindowsInput;
@@ -42,15 +40,16 @@ namespace GemAutomator.Clases
 		public int Velocidad { get => velocidad;}
 		public int[,] GemTable { get => gemTable;}
 
-		public void comenzarJuego(System.Windows.Forms.Timer load, System.Windows.Forms.Timer gameTime,int loadTime,int secs)
+		public void comenzarJuego(Timer load, Timer gameTime,int loadTime,int secs)
 		{
 			Cursor.Position = new Point(startBattle[0], startBattle[1]); //Set cursor to location 100, 150
-			Thread.Sleep(20);
-			mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-			//Cursor.Clip = new Rectangle(this.Location, this.Size);
 			load.Interval = loadTime * 1000;
 			gameTime.Interval = secs * 1000;
-			load.Start();
+			load.Start();                                                //Thread.Sleep(20);
+			Task.Delay(30).Wait();
+			mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+			//Cursor.Clip = new Rectangle(this.Location, this.Size);
+			
 			Console.WriteLine("juego comenzado");
 			
 		}
@@ -70,11 +69,6 @@ namespace GemAutomator.Clases
 			Console.WriteLine("partida empezada velocidad");
 			var simu = new InputSimulator();
 			int rondas = 6;
-			for(int i = 0; i < rondas; i++)
-			{
-				simu.Keyboard.KeyPress(VirtualKeyCode.VK_N).Sleep(400);
-			}
-			
 			foreach (Tower t in map.getAllTowers())
 			{
 
@@ -82,19 +76,27 @@ namespace GemAutomator.Clases
 				if (t.Y != 0)
 				{
 					ins.crearGema(new Poison(new int[] { GemTable[0, 0], GemTable[0, 1] }));
-					Task.Delay(50).Wait();
+					Task.Delay(40).Wait();
 					Cursor.Position = new Point(t.X, t.Y);
-					Task.Delay(50).Wait();
+					Task.Delay(40).Wait();
 					 simu.Mouse.LeftButtonClick();
-					Task.Delay(50).Wait();
+					Task.Delay(40).Wait();
 					simu.Keyboard.KeyPress(VirtualKeyCode.VK_U);
-					Task.Delay(50).Wait();	
+					Task.Delay(40).Wait();
+					simu.Keyboard.KeyPress(VirtualKeyCode.VK_U);
+					Task.Delay(40).Wait();	
 					
 					
 					
 					//mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
 					Console.WriteLine("click");
 				}
+			}
+
+			for (int i = 0; i < rondas; i++)
+			{
+				Task.Delay(300).Wait();
+				simu.Keyboard.KeyPress(VirtualKeyCode.VK_N);
 			}
 		}
 

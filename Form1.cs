@@ -82,12 +82,13 @@ namespace GemAutomator
 			finalizar();
 			if (checkBox1.Checked)
 			{
-				Thread.Sleep(9000);
+				Task.Delay(5000).Wait();
 				//Task.Delay(3000).Wait();
 				//Task.Delay(8000).ContinueWith(t => f2.obtainData(this, map_selected));
 				tablero.seleccionarMapa();
-				Thread.Sleep(1000);
-				tablero.comenzarJuego(timer2, timer1, map_selected.LoadTime, map_selected.Timer);
+				//Thread.Sleep(1000);
+				Task.Delay(1000).Wait();
+				tablero.comenzarJuego(timer2, timer1, map_selected.LoadTime, map_selected.Timer-5);
 				/*Task.Delay(8000).ContinueWith(t => tablero.seleccionarMapa());
 				Task.Delay(9000).ContinueWith(t => tablero.comenzarJuego(timer2, timer1, map_selected.LoadTime, map_selected.Timer));*/
 			}
