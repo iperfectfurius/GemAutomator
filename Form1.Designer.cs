@@ -160,8 +160,8 @@
 		private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
 		public System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Timer timer2;
-		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.GroupBox groupBox1;
+		public System.Windows.Forms.CheckBox checkBox1;
 	}
 }
 

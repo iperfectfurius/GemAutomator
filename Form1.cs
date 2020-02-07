@@ -20,7 +20,7 @@ namespace GemAutomator
 		private Tablero tablero = new Tablero();
 		private List<Map> maps = new List<Map>();
 		private Map map_selected;
-		private Form2 f2 = new Form2();
+		private static Form2 f2;
 		public Form1()
 		{	
 			InitializeComponent();
@@ -67,11 +67,17 @@ namespace GemAutomator
 
 		//----------------------Juego-------------------------//
 		public void iniciar()
-		{
-			f2.Show();
-			
-			f2.TopMost = true;
-			f2.obtainData(this, map_selected);
+		{		
+			Thread thread = new Thread(() =>
+			{
+				f2 = new Form2();
+				f2.Show();
+				f2.TopMost = true;
+				f2.obtainData(this, map_selected);
+				Application.Run(f2);
+			});
+			thread.ApartmentState = ApartmentState.STA;
+			thread.Start();
 			tablero.comenzarJuego(timer2, timer1, map_selected.LoadTime, map_selected.Timer);
 		}
 		private void timer1_Tick(object sender, EventArgs e)
@@ -99,7 +105,6 @@ namespace GemAutomator
 			timer1.Start();
 			timer2.Stop();
 			tablero.juegoIniciado(map_selected);
-			f2.timer1.Start();
 			//Console.WriteLine("segundo timer t2");
 			//this.WindowState = FormWindowState.Normal;
 			
@@ -113,6 +118,10 @@ namespace GemAutomator
 		{
 			foreach(string s in comando)
 				SendKeys.Send(s);
+		}
+		public static void juegoIniciado(string comando)
+		{
+			
 		}
 		private void finalizar()
 		{
@@ -131,7 +140,8 @@ namespace GemAutomator
 					{
 						if(c2 is CheckBox)
 						{
-							temp.Add(c2.Text);
+							if(checkBox1.Checked)
+								temp.Add(c2.Text);
 						}
 					}
 				}

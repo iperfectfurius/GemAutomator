@@ -36,6 +36,7 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.timer2 = new System.Windows.Forms.Timer(this.components);
+			this.timer3 = new System.Windows.Forms.Timer(this.components);
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -98,6 +99,11 @@
 			this.timer2.Interval = 500;
 			this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
 			// 
+			// timer3
+			// 
+			this.timer3.Interval = 3000;
+			this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+			// 
 			// Form2
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,5 +133,6 @@
 		public System.Windows.Forms.Label label3;
 		public System.Windows.Forms.Timer timer1;
 		public System.Windows.Forms.Timer timer2;
+		private System.Windows.Forms.Timer timer3;
 	}
 }

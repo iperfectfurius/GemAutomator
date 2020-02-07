@@ -69,6 +69,7 @@ namespace GemAutomator.Clases
 			Console.WriteLine("partida empezada velocidad");
 			var simu = new InputSimulator();
 			int rondas = 6;
+			
 			foreach (Tower t in map.getAllTowers())
 			{
 
@@ -95,7 +96,7 @@ namespace GemAutomator.Clases
 
 			for (int i = 0; i < rondas; i++)
 			{
-				Task.Delay(300).Wait();
+				Task.Delay(300);
 				simu.Keyboard.KeyPress(VirtualKeyCode.VK_N);
 			}
 		}
