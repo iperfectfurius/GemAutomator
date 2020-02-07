@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Threading;
+using GemAutomator.Clases.Gems;
+using WindowsInput.Native;
+using WindowsInput;
 
 namespace GemAutomator.Clases
 {
@@ -21,7 +24,7 @@ namespace GemAutomator.Clases
 		private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
 		private const int MOUSEEVENTF_RIGHTUP = 0x10;
 		private Map map = new Map();
-		private Instrucciones ins;
+		private Instrucciones ins = new Instrucciones();
 
 		private int[] startBattle = { 1481, 884 };
 		private string espacio = " ";
@@ -65,6 +68,34 @@ namespace GemAutomator.Clases
 			Form1.ejecutar("q");
 			Form1.ejecutar("q");
 			Console.WriteLine("partida empezada velocidad");
+			var simu = new InputSimulator();
+			int rondas = 6;
+			for(int i = 0; i < rondas; i++)
+			{
+				simu.Keyboard.KeyPress(VirtualKeyCode.VK_N).Sleep(400);
+			}
+			
+			foreach (Tower t in map.getAllTowers())
+			{
+
+				//Cursor.Position = new Point(t.X, t.Y); //Set cursor to location 100, 150
+				if (t.Y != 0)
+				{
+					ins.crearGema(new Poison(new int[] { GemTable[0, 0], GemTable[0, 1] }));
+					Task.Delay(50).Wait();
+					Cursor.Position = new Point(t.X, t.Y);
+					Task.Delay(50).Wait();
+					 simu.Mouse.LeftButtonClick();
+					Task.Delay(50).Wait();
+					simu.Keyboard.KeyPress(VirtualKeyCode.VK_U);
+					Task.Delay(50).Wait();	
+					
+					
+					
+					//mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+					Console.WriteLine("click");
+				}
+			}
 		}
 
 		public void finalizarJuego()

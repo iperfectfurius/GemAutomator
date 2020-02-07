@@ -83,6 +83,7 @@ namespace GemAutomator
 			if (checkBox1.Checked)
 			{
 				Thread.Sleep(9000);
+				//Task.Delay(3000).Wait();
 				//Task.Delay(8000).ContinueWith(t => f2.obtainData(this, map_selected));
 				tablero.seleccionarMapa();
 				Thread.Sleep(1000);

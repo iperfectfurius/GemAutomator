@@ -28,7 +28,7 @@ namespace GemAutomator.Clases
 			int count = 0;
 			foreach(Tower t in towers)
 			{
-				//temp[count][0] = t.X;
+				temp.Add(t);
 			}
 			return temp;
 

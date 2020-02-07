@@ -8,3 +8,6 @@ C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.csproj.Generate
 C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.exe
 C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.pdb
 C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.Form2.resources
+C:\Users\Adrian\source\repos\GemAutomator\bin\Debug\WindowsInput.dll
+C:\Users\Adrian\source\repos\GemAutomator\bin\Debug\WindowsInput.xml
+C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.csproj.CopyComplete
