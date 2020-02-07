@@ -148,5 +148,10 @@ namespace GemAutomator
 			}
 			return temp;
 		}
+
+		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
+		}
 	}
 }

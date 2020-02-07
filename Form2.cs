@@ -13,12 +13,13 @@ namespace GemAutomator
 {
 	public partial class Form2 : Form
 	{
-		private int time;
+		private int gameTime;
+		private int loadTime;
 		private bool autofarming;
 		private List<string> options = new List<string>();
 		private Map map;
 
-		public int Time { get => time; set => time = value; }
+		public int GameTime { get => gameTime; set => gameTime = value; }
 
 		public Form2()
 		{
@@ -37,7 +38,8 @@ namespace GemAutomator
 				autofarming = true;
 			printData();
 			label3.Text += m.Name;
-			Time = m.Timer;
+			gameTime = m.Timer;
+			loadTime = m.LoadTime;
 			timer3.Interval = (m.LoadTime*1000)-1500;
 			timer3.Start();
 		}
@@ -52,21 +54,23 @@ namespace GemAutomator
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			timer2.Enabled = false;
-			if (Time > 0)
+			if (gameTime > 0)
 			{
-				Time--;
-				label1.Text = Time.ToString();
+				gameTime--;
+				label1.Text = gameTime.ToString();
 			}
-			else if (Time > -7&&autofarming)
+			else if (gameTime > -7&&autofarming)
 			{
 				label1.Text = "Reiniciando Partida....";
+				gameTime--;
 			}
 			else
 			{
 				timer1.Enabled = false;
 				timer2.Start();
+				timer3.Interval = (loadTime-7) * 1000;
 				timer3.Start();
-				time = map.Timer;
+				gameTime = map.Timer;
 			}
 			
 		}

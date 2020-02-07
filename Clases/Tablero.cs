@@ -96,7 +96,7 @@ namespace GemAutomator.Clases
 
 			for (int i = 0; i < rondas; i++)
 			{
-				Task.Delay(300);
+				Task.Delay(300).Wait();
 				simu.Keyboard.KeyPress(VirtualKeyCode.VK_N);
 			}
 		}
