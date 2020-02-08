@@ -1,13 +1,16 @@
 ﻿using GemAutomator.Clases;
 using GemAutomator.Clases.Maps;
+using IronOcr;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -62,6 +65,12 @@ namespace GemAutomator
 			{
 				if (m.Finished && m.Name == comboBox1.SelectedItem.ToString())
 					map_selected = m;
+			}
+			string[] d = Directory.GetFiles(@"C:\Users\Adrian\source\repos\GemAutomator\Clases\imgs");
+			foreach(string s in d)
+			{
+				string temp = Regex.Replace(s,@"C:\\Users\\Adrian\\source\\repos\\GemAutomator\\Clases\\imgs\\", "");
+				comboBox2.Items.Add(temp);
 			}
 		}
 
@@ -150,6 +159,55 @@ namespace GemAutomator
 		}
 
 		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			readImage(comboBox2.SelectedItem.ToString());
+		}
+
+		private void readImage(string img)
+		{
+			var Ocr = new AdvancedOcr()
+			{
+				CleanBackgroundNoise = false,//letre petita off pareix millor
+				EnhanceContrast = true,
+				EnhanceResolution = true,
+				Language = IronOcr.Languages.English.OcrLanguagePack,
+				Strategy = IronOcr.AdvancedOcr.OcrStrategy.Advanced,
+				ColorSpace = AdvancedOcr.OcrColorSpace.Color,
+				DetectWhiteTextOnDarkBackgrounds = true,
+				InputImageType = AdvancedOcr.InputTypes.AutoDetect,
+				RotateAndStraighten = true,
+				ReadBarCodes = false,
+				ColorDepth = 0
+			};
+			var X = 1595; //px
+			var Y = 135;
+			var Width = 320;
+			var Height = 77;
+			var CropArea = new Rectangle(X, Y, Width, Height);
+
+			var Result = Ocr.Read(@"C:\Users\Adrian\source\repos\GemAutomator\Clases\imgs\" + img,CropArea);
+			Console.WriteLine(Result.Text.Replace(Environment.NewLine, ""));
+			switch (Result.Text.Replace(Environment.NewLine, ""))
+			{
+				case @"(0)!I - l":
+					label1.Text = "Full";
+					break;
+				case @"Talisman I":
+					label1.Text = "Ningún frag";
+					break;
+				case @"©—":
+					label1.Text = "New";
+					break;
+			}
+			
+		}
+
+		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}
