@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -20,6 +21,7 @@ namespace GemAutomator.Clases
 		private const int MOUSEEVENTF_LEFTUP = 0x04;
 		private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
 		private const int MOUSEEVENTF_RIGHTUP = 0x10;
+		private InputSimulator simu = new InputSimulator();
 
 		private int velocidad;
 		public void acelerar()
@@ -36,7 +38,6 @@ namespace GemAutomator.Clases
 		}
 		public void crearGema(Gem g)
 		{
-			var simu = new InputSimulator();
 			simu.Keyboard.KeyPress(VirtualKeyCode.NUMPAD2);
 		}
 		public void colocarGema(Gem g,int[] pos)
@@ -50,6 +51,28 @@ namespace GemAutomator.Clases
 		public void crearTrampa(Trap t)
 		{
 
+		}
+		public void vaciarTalisman()
+		{
+			Cursor.Position = new Point(1800, 168);
+			Task.Delay(50).Wait();
+			simu.Mouse.LeftButtonClick();
+			Task.Delay(300).Wait();
+			simu.Keyboard.KeyPress(VirtualKeyCode.VK_X);
+			Task.Delay(40).Wait();
+			Cursor.Position = new Point(1230, 750);
+			for (int i = 0; i < 5; i++)
+			{
+				Task.Delay(50).Wait();
+				simu.Mouse.LeftButtonClick();
+				Task.Delay(50).Wait();
+				Cursor.Position = new Point(Cursor.Position.X+110, 750);
+				
+
+			}
+			Task.Delay(50).Wait();
+			simu.Keyboard.KeyPress(VirtualKeyCode.BACK);
+			Task.Delay(800).Wait();
 		}
 	}
 }

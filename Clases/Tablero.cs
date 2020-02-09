@@ -24,6 +24,7 @@ namespace GemAutomator.Clases
 		private Map map = new Map();
 		private Instrucciones ins = new Instrucciones();
 
+		//Probablemente esto en instrucciones
 		private int[] startBattle = { 1481, 884 };
 		private string espacio = " ";
 		private int velocidad = 81;
@@ -113,6 +114,10 @@ namespace GemAutomator.Clases
 
 
 			
+		}
+		public void emptyTalisman()
+		{
+			ins.vaciarTalisman();
 		}
 	}
 }

@@ -94,5 +94,10 @@ namespace GemAutomator
 			timer3.Stop();
 			timer1.Start();
 		}
+
+		private void timer4_Tick(object sender, EventArgs e)
+		{
+			Console.WriteLine("se me ha activado bro");
+		}
 	}
 }
