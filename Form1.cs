@@ -187,8 +187,10 @@ namespace GemAutomator
 				Console.WriteLine(pixel);
 				if (pixel.R > 220)
 					fullFrags = true;
+				captureBitmap.Dispose();
+				captureGraphics.Dispose();
 			}
-
+				
 			catch (Exception ex)
 			{
 				MessageBox.Show("Algo falla... " +  ex);
