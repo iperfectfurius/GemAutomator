@@ -11,3 +11,7 @@ C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.csproj.CopyComp
 C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.exe
 C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.pdb
 C:\Users\Adrian\source\repos\GemAutomator\obj\Debug\GemAutomator.csprojAssemblyReference.cache
+C:\Users\Adrian\source\repos\GemAutomator\bin\Debug\RestSharp.dll
+C:\Users\Adrian\source\repos\GemAutomator\bin\Debug\RestSharp.xml
+C:\Users\Adrian\source\repos\GemAutomator\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Adrian\source\repos\GemAutomator\bin\Debug\Newtonsoft.Json.xml

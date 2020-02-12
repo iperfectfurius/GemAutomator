@@ -14,6 +14,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using RestSharp;
+using Newtonsoft.Json.Linq;
 
 namespace GemAutomator
 {
@@ -24,6 +27,7 @@ namespace GemAutomator
 		private List<Map> maps = new List<Map>();
 		private Map map_selected;
 		private static Form2 f2;
+		private static readonly HttpClient client = new HttpClient();
 		public Form1()
 		{
 			InitializeComponent();
@@ -98,7 +102,7 @@ namespace GemAutomator
 					tablero.emptyTalisman();
 					//f2.timer4.Start();
 				}
-				
+
 				//Task.Delay(3000).Wait();
 				//Task.Delay(8000).ContinueWith(t => f2.obtainData(this, map_selected));
 				tablero.seleccionarMapa();
@@ -164,16 +168,6 @@ namespace GemAutomator
 
 		}
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-		}
-
-
-		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
 		private bool CaptureMyScreen()
 		{
 			bool fullFrags = false;
@@ -190,28 +184,42 @@ namespace GemAutomator
 				captureBitmap.Dispose();
 				captureGraphics.Dispose();
 			}
-				
+
 			catch (Exception ex)
 			{
-				MessageBox.Show("Algo falla... " +  ex);
+				MessageBox.Show("Algo falla... " + ex);
 			}
 			return fullFrags;
 		}
-
-		private void button3_Click(object sender, EventArgs e)
+		private void sendShadowCores()
 		{
-			DirectoryInfo ds = new DirectoryInfo(Directory.GetCurrentDirectory());//Assuming Test is your Folder
-			FileInfo[] Files = ds.GetFiles();
-			foreach (FileInfo f in Files)
-			{
-				comboBox2.Items.Add(f);
-			}
+			//get
+			var client = new RestClient("http://81.203.8.151/GemAutomator");
+			var request = new RestRequest();
+			request.AddParameter("id", "payaso");
+			var response = client.Get(request);
+			//retorno de json
+			dynamic s = JObject.Parse(response.Content);
+			//Obtener objeto json
+			Console.WriteLine(s.id);
+			// client.Authenticator = new HttpBasicAuthenticator(username, password);
+
+			//request.AddParameter("thing1", "Hello");
+			//request.AddParameter("thing2", "world");
+			//request.AddHeader("header", "value");
+			//request.AddFile("file", path);
+			//var response = client.Post(request);
+
+
+
+			//var content = response.Content; // raw content as string
+			//var response2 = client.Post<Person>(request);
+			//var name = response2.Data.Name;
 		}
 
-		private void button4_Click(object sender, EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
 		{
-			CaptureMyScreen();
+			sendShadowCores();
 		}
 	}
-	
 }
