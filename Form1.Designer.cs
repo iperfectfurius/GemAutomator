@@ -40,6 +40,9 @@
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.button2 = new System.Windows.Forms.Button();
+			this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.actualizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.label2 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -80,7 +83,8 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.opcionesToolStripMenuItem});
+            this.opcionesToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -134,11 +138,34 @@
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
+			// ayudaToolStripMenuItem
+			// 
+			this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.actualizacionesToolStripMenuItem});
+			this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+			this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+			this.ayudaToolStripMenuItem.Text = "Ayuda";
+			// 
+			// actualizacionesToolStripMenuItem
+			// 
+			this.actualizacionesToolStripMenuItem.Name = "actualizacionesToolStripMenuItem";
+			this.actualizacionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.actualizacionesToolStripMenuItem.Text = "Actualizaciones";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(668, 130);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(0, 13);
+			this.label2.TabIndex = 8;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.menuStrip1);
@@ -176,6 +203,9 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		public System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem actualizacionesToolStripMenuItem;
+		private System.Windows.Forms.Label label2;
 	}
 }
 

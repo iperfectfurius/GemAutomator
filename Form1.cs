@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.Net.Http;
 using RestSharp;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 
 namespace GemAutomator
 {
@@ -33,6 +34,20 @@ namespace GemAutomator
 			InitializeComponent();
 			addAllMaps();
 			showMaps();
+			actualizaciones();
+		}
+
+		private void actualizaciones()
+		{
+			var client = new RestClient("http://81.203.8.151/GemAutomator/version.php");
+			var request = new RestRequest();
+			string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+			Console.WriteLine(version);
+			request.AddParameter("version", "1.0.0.1");
+			var response = client.Post(request);
+			dynamic s = JObject.Parse(response.Content);
+			if (s.message != "Actualizado")
+				label2.Text = "Actualización disponible!";
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
