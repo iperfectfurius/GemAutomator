@@ -35,14 +35,15 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.actualizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.timer2 = new System.Windows.Forms.Timer(this.components);
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.button2 = new System.Windows.Forms.Button();
-			this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.actualizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.menuStrip1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -98,6 +99,20 @@
 			this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
 			this.opcionesToolStripMenuItem.Text = "Opciones";
 			// 
+			// ayudaToolStripMenuItem
+			// 
+			this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.actualizacionesToolStripMenuItem});
+			this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+			this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+			this.ayudaToolStripMenuItem.Text = "Ayuda";
+			// 
+			// actualizacionesToolStripMenuItem
+			// 
+			this.actualizacionesToolStripMenuItem.Name = "actualizacionesToolStripMenuItem";
+			this.actualizacionesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+			this.actualizacionesToolStripMenuItem.Text = "Actualizaciones";
+			// 
 			// timer1
 			// 
 			this.timer1.Interval = 1000;
@@ -130,27 +145,13 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(370, 278);
+			this.button2.Location = new System.Drawing.Point(341, 415);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 23);
 			this.button2.TabIndex = 7;
 			this.button2.Text = "Comenzar!";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// ayudaToolStripMenuItem
-			// 
-			this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.actualizacionesToolStripMenuItem});
-			this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-			this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-			this.ayudaToolStripMenuItem.Text = "Ayuda";
-			// 
-			// actualizacionesToolStripMenuItem
-			// 
-			this.actualizacionesToolStripMenuItem.Name = "actualizacionesToolStripMenuItem";
-			this.actualizacionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.actualizacionesToolStripMenuItem.Text = "Actualizaciones";
 			// 
 			// label2
 			// 
@@ -160,11 +161,22 @@
 			this.label2.Size = new System.Drawing.Size(0, 13);
 			this.label2.TabIndex = 8;
 			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(703, 133);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(81, 17);
+			this.checkBox2.TabIndex = 9;
+			this.checkBox2.Text = "Send to DB";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.checkBox2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.groupBox1);
@@ -206,6 +218,7 @@
 		private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem actualizacionesToolStripMenuItem;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }
 

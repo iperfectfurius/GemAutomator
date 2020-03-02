@@ -14,7 +14,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net.Http;
 using RestSharp;
 using Newtonsoft.Json.Linq;
 using System.Reflection;
@@ -192,9 +191,12 @@ namespace GemAutomator
 				captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
 
 				Bitmap shadowCores = new Bitmap(245, 50, PixelFormat.Format24bppRgb);
-				shadowCores = captureBitmap.Clone(new Rectangle(1646, 970, 230, 40), shadowCores.PixelFormat);
-				//shadow_cores.Save("prueba.png",ImageFormat.Png);
-				sendShadowCores(shadowCores);		
+				if (checkBox2.Checked)
+				{	
+					shadowCores = captureBitmap.Clone(new Rectangle(1646, 970, 230, 40), shadowCores.PixelFormat);
+					//shadow_cores.Save("prueba.png",ImageFormat.Png);
+					sendShadowCores(shadowCores);
+				}
 
 				Color pixel = captureBitmap.GetPixel(1652, 165);
 				Console.WriteLine(pixel);

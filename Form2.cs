@@ -86,7 +86,6 @@ namespace GemAutomator
 				label1.Text += '.';
 			}
 
-
 		}
 
 		private void timer3_Tick(object sender, EventArgs e)
