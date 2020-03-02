@@ -28,7 +28,6 @@ namespace GemAutomator
 		private List<Map> maps = new List<Map>();
 		private Map map_selected;
 		private static Form2 f2;
-		private static readonly HttpClient client = new HttpClient();
 		public Form1()
 		{
 			InitializeComponent();
@@ -42,8 +41,7 @@ namespace GemAutomator
 			var client = new RestClient("http://81.203.8.151/GemAutomator/version.php");
 			var request = new RestRequest();
 			string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-			Console.WriteLine(version);
-			request.AddParameter("version", "1.0.0.1");
+			request.AddParameter("version", version);
 			var response = client.Post(request);
 			dynamic s = JObject.Parse(response.Content);
 			if (s.message != "Actualizado")
@@ -192,49 +190,49 @@ namespace GemAutomator
 				Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
 				Graphics captureGraphics = Graphics.FromImage(captureBitmap);
 				captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+
+				Bitmap shadowCores = new Bitmap(245, 50, PixelFormat.Format24bppRgb);
+				shadowCores = captureBitmap.Clone(new Rectangle(1646, 970, 230, 40), shadowCores.PixelFormat);
+				//shadow_cores.Save("prueba.png",ImageFormat.Png);
+				sendShadowCores(shadowCores);		
+
 				Color pixel = captureBitmap.GetPixel(1652, 165);
 				Console.WriteLine(pixel);
 				if (pixel.R > 220)
 					fullFrags = true;
 				captureBitmap.Dispose();
 				captureGraphics.Dispose();
+				shadowCores.Dispose();
 			}
 
 			catch (Exception ex)
 			{
 				MessageBox.Show("Algo falla... " + ex);
+				Console.WriteLine(ex);
 			}
 			return fullFrags;
 		}
-		private void sendShadowCores()
+		private void sendShadowCores(Bitmap img)
 		{
-			//get
-			var client = new RestClient("http://81.203.8.151/GemAutomator");
+			MemoryStream imageInMemory = new MemoryStream();
+			img.Save(imageInMemory, ImageFormat.Png);
+			
+
+			var client = new RestClient("http://81.203.8.151/GemAutomator/");
 			var request = new RestRequest();
-			request.AddParameter("id", "payaso");
-			var response = client.Get(request);
-			//retorno de json
-			dynamic s = JObject.Parse(response.Content);
-			//Obtener objeto json
-			Console.WriteLine(s.id);
-			// client.Authenticator = new HttpBasicAuthenticator(username, password);
 
-			//request.AddParameter("thing1", "Hello");
-			//request.AddParameter("thing2", "world");
-			//request.AddHeader("header", "value");
-			//request.AddFile("file", path);
-			//var response = client.Post(request);
+			imageInMemory.Position = 0;
+			request.AddFile("img", imageInMemory.ToArray(), "a.png");
+	
 
-
-
-			//var content = response.Content; // raw content as string
-			//var response2 = client.Post<Person>(request);
-			//var name = response2.Data.Name;
+			client.PostAsync(request, (a, b) => {});
+			imageInMemory.Close();
 		}
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			sendShadowCores();
+			//sendShadowCores();
+			CaptureMyScreen();
 		}
 	}
 }
