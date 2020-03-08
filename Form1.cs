@@ -41,10 +41,18 @@ namespace GemAutomator
 			var request = new RestRequest();
 			string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 			request.AddParameter("version", version);
-			var response = client.Post(request);
-			dynamic s = JObject.Parse(response.Content);
-			if (s.message != "Actualizado")
-				label2.Text = "Actualización disponible!";
+			client.PostAsync(request, (a, b) =>
+			{
+				try
+				{
+					dynamic s = JObject.Parse(a.Content);
+					if (s.message != "Actualizado")
+						label2.Text = "Actualización disponible!";
+				}
+				catch
+				{
+				}
+			});	
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -235,6 +243,11 @@ namespace GemAutomator
 		{
 			//sendShadowCores();
 			CaptureMyScreen();
+		}
+
+		private void checkBox2_CheckedChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
